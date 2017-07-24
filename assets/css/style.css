@@ -1,0 +1,23 @@
+body {
+	font-family: helvetica, arial, "sans serif"; 
+	font-size: 1.7em;
+	background-color: #F7F4E9;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+.container {
+	margin: 0 50px 0 50px;
+}
+
+.title {
+	padding: 5%;
+
+}
+
+.question-box {
+	padding: 50px;
+	background-color: white;
+}
