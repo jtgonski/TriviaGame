@@ -1,94 +1,137 @@
 $(document).ready(function() {
 
-// window.onload = function() {
-//   $("#start").on("click", stopwatch.recordLap);
-//   $("#stop").on("click", stopwatch.stop);
-//   $("#reset").on("click", stopwatch.reset);
-//   $("#start").on("click", stopwatch.start);
-// };
-
 	//Declare Variables
 	var correctAs = 0;
 	var incorrectAs = 0; 
+	var counter = 0; 
 	//create an object or array that holds the trivia questions and answers
-	var questions = ["question 1", "question 2", "question 3", "question 4", "question 5", "question 6", "question 7",
-					"question 9", "question 10"];
-	var answers = ["<div class='correct'>answer 1</div><div class='incorrect'>other answer</div>", "answer 2", "answer 3", "answer 4", "answer 5", "answer 6", "answer 7", "answer 8", "answer 9", "answer 10"]		
+	var questions = [];
+	questions[0] = "who is the best character in Parks and Rec?"; 
+	questions[1] = "what is andy dwyer's band name?";
+	questions[2] = "Who does Leslie Knope Marry?";
+	questions[3] = "Where is Tom Haverford from?"; 
 
-	// var trivia = {
-	// 	qs: ["I’m a simple man. I like pretty, dark-haired women and breakfast food.", "Most people would say 'the deets', but I say 'the tails.' Just another example of innovation. "].
-	// 	as: ["RS", "TH", "RS", "MLS", "RS", "LK", "TH", "LK", "JRS", "RS"], 
-	// 	ra1: ["AD", "TH", "JG"],
+	var answers = [];
+	answers[0] = "Leslie Knope"; 
+	answers[1] = "mouserat"; 
+	answers[2] = "Ben Wyatt";
+	answers[3] = "south carolina";
 
-	// }	
+	var allAnswers = [];
+	allAnswers[0] = ["Tammy 2", "Mark Brandanawicz", "Anne Perkins", "Leslie Knope"];
+	allAnswers[1] = ["neutral wilk hotel", "horny toad", "skunk", "mouserat"];
+	allAnswers[2] = ["Ben Wyatt", "ron swanson", "the Prince of Wales", "Chris Traeger"];
+	allAnswers[3] = ["Mumbai", "Pawnee Indiana", "south carolina", "New York City"]; 
 
+
+	var secondsLeft = 5; 
 	
-
-
-	var i = 0;
-	var timerNumber = 5; 
-	var intervalID;
-
-	
-	$("#timer").html("time remaining: " + timerNumber + " seconds")
-
-	for (var j = 0; j < answers.length; j++) {
-		questions[i].addClass("correct"); 
+	for (var i = 0; i < questions.length; i++); {
+		console.log(questions[i]); 
 	}
 
-	console.log(questions[3]);
+//Here we run a timer counting down form a set number 
+	var intervalID;
 
+	function timer() {
+		intervalID = setInterval(function() {
+			$("#timer").html("time remaining: " + secondsLeft + " seconds");
+			
+				if (secondsLeft === 0) {
+					incorrectAnswer();
+					stopTimer(); 
+					counter++;
+					setTimeout(clear, 1 * 1000); 
+					setTimeout(displayNextQuestion, 1 * 1000);
 
+				}
+				secondsLeft--;
 
-	$(document).on("click", function () {
-		function run() {
-			intervalID = setInterval(decrement, 1000);
-		} 
+		}, 1000);
+	}
 
-		function decrement () {
-			timerNumber --; 
+	function stopTimer() {
+		clearInterval(intervalID); 
+		secondsLeft = 5; 
+	}
 
-			$("#timer").html("time remaining: " + timerNumber + " seconds")
+	function displayNextQuestion() {
+		$("#start").remove(); 
+		if (counter < questions.length) {
 
-			$("#questions").html("<p>" + questions[i] + "</p>" + "<p>" + answers[i] + "</p>");
+			if (secondsLeft > 0) {
+				timer();
 
-			if (timerNumber === 0) {
-				stop(); 
-				reset();
-				i++; 
+				$("#questions").html(questions[counter]); 
+
+				for (var i = 0; i < allAnswers[counter].length; i++) {
+					$("#answers").append("<p class = choice>" + allAnswers[counter][i] + "</p>"); 
+				}
+
+			} else {
+			wrongAnswer(); 
 			}
 		}
 
-		function stop () {
-			clearInterval(intervalID); 
+		else {
+			clear(); 
+			getResults();
+
 		}
 
-		function reset () {
-			timerNumber = 5;
+
+
+	}
+	$(document).on("click", "#start", displayNextQuestion);
+
+
+
+	$(document).on("click", ".choice", function() {
+		if ($(this).text() === answers[counter]) {
+			counter++; 
+			correctAnswer();
+			stopTimer();
+			setTimeout(clear, 1 * 1000); 
+			setTimeout(displayNextQuestion, 1 * 1000); 
+
+		}else {
+			counter++; 
+			incorrectAnswer(); 
+			stopTimer(); 
+			setTimeout(clear, 1 * 1000); 
+			setTimeout(displayNextQuestion, 1 * 1000); 
 		}
 
-		run();
 	})
 
+	console.log("correct" + correctAs); 
+	console.log("incorrect" + incorrectAs); 
+
+
+	function correctAnswer() {
+		$("#question").text(" "); 
+		$("#answers").html("You're Right!"); 
+		correctAs ++; 
+	}
+
+	function incorrectAnswer() {
+		$("#answers").html("nope! the correct answer was " + answers[counter]); 
+		incorrectAs++; 
+	}
+
+	function clear() {
+		$("#questions").empty();
+		$("#answers").empty(); 
+	}
+
+	function getResults() {
+		$("#questions").append("<h2>you got " + correctAs + " questions right </h2>");
+		$("#questions").append("<h2>you got " + incorrectAs + " questions wrong </h2>");
+	}
 	
-	//set timer div (countdown from 30 seconds);
+//
 
-
-
-//set a reset function which resets the timer after each answer
-//if timer is > 0
-//for questionsAnswers < questions.length, then play the game
-//set on click event
-//check if click val === correct answer,
-//	if yes, correct answer +=1; 
-//	else, wrong answers +=1; 
-//		  gameQuestions[i]
-//if timer === 0
-//	 wrong answer +=1; 
-//	 move to the next question(?);
-
-// when questions = questions.length, 
-// show final page with wrong answers and right answers displayed
+	
 
 
 });
