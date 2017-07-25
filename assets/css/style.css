@@ -6,12 +6,27 @@ body {
 	line-height: 1.3em;
 }
 
+button {
+	
+	background-color: #49b138;
+	color: #F7F4E9;
+	padding: 20px;
+	margin-top: 20px;
+	font-size: 1em;
+}
+
+img {
+	padding: 2%;
+	margin-top: 10px;
+}
+
 .title {
 	font-size: 5em;
 	font-family: 'Alegreya Sans', sans-serif;
 	color: #49b138;
 	line-height: .9em;
 	text-shadow: 1px 2px black; 
+	padding: 5%;
 }
 
 #and {
@@ -25,10 +40,7 @@ body {
 	min-height: 150px;
 }
 
-.title {
-	padding: 5%;
 
-}
 
 #questions {
 	margin-top: 10px;
@@ -37,3 +49,9 @@ body {
 #answers {
 	margin-top: 10px;
 }
+
+.choice:hover {
+	background-color: white;
+	max-width: 250px;
+}
+
