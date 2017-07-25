@@ -1,15 +1,28 @@
 body {
 	font-family: helvetica, arial, "sans serif"; 
-	font-size: 1.7em;
-	background-color: #F7F4E9;
+	font-size: 1.2em;
+	background-image: url(../images/background.jpg); 
+	background-size: 100%;
+	line-height: 1.3em;
 }
 
-h1 {
-	font-size: 2em;
+.title {
+	font-size: 5em;
+	font-family: 'Alegreya Sans', sans-serif;
+	color: #49b138;
+	line-height: .9em;
+	text-shadow: 1px 2px black; 
+}
+
+#and {
+	font-size: .7em;
 }
 
 .container {
 	margin: 0 50px 0 50px;
+	padding: 5%;
+	background-color: #F7F4E9;
+	min-height: 150px;
 }
 
 .title {
@@ -17,7 +30,10 @@ h1 {
 
 }
 
-.question-box {
-	padding: 50px;
-	background-color: white;
+#questions {
+	margin-top: 10px;
+}
+
+#answers {
+	margin-top: 10px;
 }
