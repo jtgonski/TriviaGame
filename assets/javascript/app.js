@@ -13,9 +13,9 @@ $(document).ready(function() {
 	questions[3] = "Where is Tom Haverford from?"; 
 	questions[4] = "Who said: 'Sometimes you gotta work a little, so you can ball a lot!'?";
 	questions[5] = "What does Ron Swanson keep on his desk?";
-	questions[6] = "At the beginning of the show, who is April Ludgate Dating?";
+	questions[6] = "At the beginning of the show, who is April Ludgate dating?";
 	questions[7] = "Which person is at the top of Leslie Knope's Celebrity Sex List?"
-	questions[8] = "Who said: 'Fishing relaxes me. It’s like yoga, except i still get to kill something";
+	questions[8] = "Who said: 'Fishing relaxes me. It’s like yoga, except I still get to kill something";
 	questions[9] = "Which of the following does April Ludgate not hate?";
 	questions[10] = "Who said: 'I hope you brought a change of clothes because your eyes are about to piss tears'"
 
@@ -145,8 +145,11 @@ $(document).ready(function() {
 		$("#timer").text("No more questions... Here's how you did!");
 		$("#questions").append("<h2>you got " + correctAs + " questions right </h2>");
 		$("#questions").append("<h2>you got " + incorrectAs + " questions wrong </h2>");
-		if (correctAs > incorrectAs) {
+		if (correctAs > 6) {
 			$("#answers").append("Great job! You're a real Parks and Rec Fan!")
+		}
+		else if (correctAs > 3) {
+			$("#answers").append("Not Bad. You should probably watch a few episodes just to brush up though!")
 		}
 		else{
 			$("#answers").append("Time to watch some more Parks and Recreation! You've still got so much to learn!")
